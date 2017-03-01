@@ -12,5 +12,10 @@
     "demo": "npm run preparenpm && cd demo && npm remove ngx-template && npm install ../ && ng serve"
   },
   "author": "Josh Sommer <joshdsommer@gmail.com> (https://twitter.com/_JoshSommer)",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
   }
+}
