@@ -1,0 +1,16 @@
+{
+  "name": "ngx-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "init": "echo",
+    "serve": "cd ngx-template && ng serve",
+    "test": "cd ngx-template && npm test",
+    "setup": "cd ngx-template && npm install && cd ../demo && npm install",
+    "prepareDist": "cd ngx-template && tsc -p tsconfig.dist.json --skipLibCheck && cd ..  && tsc",
+    "demo": "npm run preparenpm && cd demo && npm remove ngx-template && npm install ../ && ng serve"
+  },
+  "author": "Josh Sommer <joshdsommer@gmail.com> (https://twitter.com/_JoshSommer)",
+  "license": "ISC"
+  }

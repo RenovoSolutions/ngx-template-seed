@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": "",
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es6", "dom"],
+    "mapRoot": "./",
+    "module": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es5",
+	"noEmitOnError": false,
+	"noEmit": false,
+	"allowUnreachableCode": true,
+	"skipLibCheck": true
+  },
+  "files": [
+		"index.ts"
+  ]
+}
