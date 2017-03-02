@@ -2,8 +2,9 @@ var fs = require('fs');
 var gulp = require('gulp');
 var replace = require('gulp-replace');
 var rename = require("gulp-rename");
+const exec = require('child_process').execSync;
 
-var deleteFolderRecursive = function (path) {
+var deleteFolderRecursive = (path) => {
 	if (fs.existsSync(path)) {
 		fs.readdirSync(path).forEach(function (file, index) {
 			var curPath = path + "/" + file;
@@ -17,10 +18,10 @@ var deleteFolderRecursive = function (path) {
 	}
 };
 
-gulp.task('startSetup', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files', 'rename-files-1', 'rename-files-2','move', 'cleanup']);
+gulp.task('startSetup', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files', 'rename-files-1', 'rename-files-2', 'move', 'cleanup', 'run-setup']);
 
 
-gulp.task('find-and-replace-in-root-files', function () {
+gulp.task('find-and-replace-in-root-files', () => {
 	var newName = process.argv[4];
 	var className = newName.charAt(0).toUpperCase() + newName.substr(1).replace('-', '');
 	return gulp.src(['**.*', '!gulpfile.js', '.npmignore', '.gitignore'])
@@ -29,7 +30,7 @@ gulp.task('find-and-replace-in-root-files', function () {
 		.pipe(gulp.dest(''));
 
 });
-gulp.task('find-and-replace-in-project-files', ['find-and-replace-in-root-files'], function () {
+gulp.task('find-and-replace-in-project-files', ['find-and-replace-in-root-files'], () => {
 	var newName = process.argv[4];
 	var className = newName.charAt(0).toUpperCase() + newName.substr(1).replace('-', '');
 
@@ -40,7 +41,7 @@ gulp.task('find-and-replace-in-project-files', ['find-and-replace-in-root-files'
 
 });
 
-gulp.task('find-and-replace-in-demo-files', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files'], function () {
+gulp.task('find-and-replace-in-demo-files', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files'], () => {
 	var newName = process.argv[4];
 	var className = newName.charAt(0).toUpperCase() + newName.substr(1).replace('-', '');
 
@@ -50,7 +51,7 @@ gulp.task('find-and-replace-in-demo-files', ['find-and-replace-in-root-files', '
 		.pipe(gulp.dest('demo/src/app/'));
 
 });
-gulp.task('rename-files-1', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files'], function () {
+gulp.task('rename-files-1', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files'], () => {
 	var newName = process.argv[4];
 	var className = newName.charAt(0).toUpperCase() + newName.substr(1).replace('-', '');
 
@@ -60,7 +61,7 @@ gulp.task('rename-files-1', ['find-and-replace-in-root-files', 'find-and-replace
 
 });
 
-gulp.task('rename-files-2', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files'], function () {
+gulp.task('rename-files-2', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files'], () => {
 	var newName = process.argv[4];
 	var className = newName.charAt(0).toUpperCase() + newName.substr(1).replace('-', '');
 
@@ -70,13 +71,18 @@ gulp.task('rename-files-2', ['find-and-replace-in-root-files', 'find-and-replace
 
 });
 
-gulp.task('move', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files', 'rename-files-1', 'rename-files-2',], function () {
+gulp.task('move', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files', 'rename-files-1', 'rename-files-2',], () => {
 	var newName = process.argv[4];
 	return gulp.src(['ngx-template/**/*', '!ngx-template/src/app/ngx-template.*'])
 		.pipe(gulp.dest(newName));
 });
 
 
-gulp.task('cleanup', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files', 'rename-files-1', 'rename-files-2','move',], function () {
-	deleteFolderRecursive('ngx-template');
-})
+gulp.task('cleanup', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files', 'rename-files-1', 'rename-files-2', 'move',], () => {
+	return deleteFolderRecursive('ngx-template');
+});
+
+gulp.task('run-setup', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files', 'rename-files-1', 'rename-files-2', 'move', 'cleanup'], () => {
+	return exec('npm run setup')
+});
+
