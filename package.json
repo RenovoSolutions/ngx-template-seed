@@ -4,13 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "init": "echo",
+    "new": "gulp startSetup --option",
     "serve": "cd ngx-template && ng serve",
     "test": "cd ngx-template && npm test",
     "setup": "cd ngx-template && npm install && cd ../demo && npm install",
-    "prepareDist": "cd ngx-template && tsc -p tsconfig.dist.json --skipLibCheck && cd ..  && tsc",
-    "demo": "npm run preparenpm && cd demo && npm remove ngx-template && npm install ../ && ng serve"
+    "prepare.dist": "cd ngx-template && tsc -p tsconfig.dist.json --skipLibCheck && cd ..  && tsc",
+    "demo": "npm run prepare.dist && cd demo && npm remove ngx-template && npm install ../ && ng serve"
   },
   "author": "Josh Sommer <joshdsommer@gmail.com> (https://twitter.com/_JoshSommer)",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4"
   }
+}

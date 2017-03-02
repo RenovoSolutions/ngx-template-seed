@@ -9,3 +9,5 @@ ngx-template/node_modules
 ngx-template/**/*.js
 ngx-template/**/*.d.ts
 !ngx-template/*.js
+node_modules
+!gulpfile.js
