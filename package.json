@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "new.project": "gulp default --option",
+    "new": "gulp default --option",
     "serve": "cd ngx-template && ng serve",
     "test": "cd ngx-template && npm test",
     "setup": "cd ngx-template && npm install && cd ../demo && npm install",
