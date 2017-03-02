@@ -73,7 +73,7 @@ gulp.task('rename-files-2', ['find-and-replace-in-root-files', 'find-and-replace
 
 gulp.task('move', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files', 'rename-files-1', 'rename-files-2',], () => {
 	var newName = process.argv[4];
-	return gulp.src(['ngx-template/**/*', '!ngx-template/src/app/ngx-template.*'])
+	return gulp.src(['./ngx-template/**/*', './ngx-template/.angular-cli.json','!./ngx-template/src/app/ngx-template.*'])
 		.pipe(gulp.dest(newName));
 });
 
