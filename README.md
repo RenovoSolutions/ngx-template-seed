@@ -1,5 +1,5 @@
 # ngx-template-seed
-## Seed project for creating redistributable Angular modules
+### Seed project for creating redistributable Angular modules
 
 ## Getting started
 
