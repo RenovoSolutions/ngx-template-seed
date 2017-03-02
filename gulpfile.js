@@ -18,12 +18,18 @@ var deleteFolderRecursive = (path) => {
 	}
 };
 
+getClassName = ()=>{
+	var newName = process.argv[4].replace(new RegExp('-','g'), '');
+	console.log(newName);
+	return newName.charAt(0).toUpperCase() + newName.substr(1);
+}
+
 gulp.task('startSetup', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files', 'rename-files-1', 'rename-files-2', 'move', 'cleanup', 'run-setup']);
 
 
 gulp.task('find-and-replace-in-root-files', () => {
 	var newName = process.argv[4];
-	var className = newName.charAt(0).toUpperCase() + newName.substr(1).replace('-', '');
+	var className =getClassName();
 	return gulp.src(['**.*', '!gulpfile.js', '.npmignore', '.gitignore'])
 		.pipe(replace('ngx-template', newName))
 		.pipe(replace('NGXTemplate', className))
@@ -32,7 +38,7 @@ gulp.task('find-and-replace-in-root-files', () => {
 });
 gulp.task('find-and-replace-in-project-files', ['find-and-replace-in-root-files'], () => {
 	var newName = process.argv[4];
-	var className = newName.charAt(0).toUpperCase() + newName.substr(1).replace('-', '');
+	var className = getClassName();
 
 	return gulp.src(['ngx-template/src/app/**.*'])
 		.pipe(replace('ngx-template', newName))
@@ -43,7 +49,7 @@ gulp.task('find-and-replace-in-project-files', ['find-and-replace-in-root-files'
 
 gulp.task('find-and-replace-in-demo-files', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files'], () => {
 	var newName = process.argv[4];
-	var className = newName.charAt(0).toUpperCase() + newName.substr(1).replace('-', '');
+	var className =getClassName();
 
 	gulp.src(['demo/src/app/**.*'])
 		.pipe(replace('ngx-template', newName))
@@ -53,7 +59,7 @@ gulp.task('find-and-replace-in-demo-files', ['find-and-replace-in-root-files', '
 });
 gulp.task('rename-files-1', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files'], () => {
 	var newName = process.argv[4];
-	var className = newName.charAt(0).toUpperCase() + newName.substr(1).replace('-', '');
+	var className =getClassName();
 
 	return gulp.src(['./ngx-template/src/app/ngx-template.component.ts'])
 		.pipe(rename(newName + '.component.ts'))
@@ -63,7 +69,7 @@ gulp.task('rename-files-1', ['find-and-replace-in-root-files', 'find-and-replace
 
 gulp.task('rename-files-2', ['find-and-replace-in-root-files', 'find-and-replace-in-project-files', 'find-and-replace-in-demo-files'], () => {
 	var newName = process.argv[4];
-	var className = newName.charAt(0).toUpperCase() + newName.substr(1).replace('-', '');
+	var className =getClassName();
 
 	return gulp.src(['./ngx-template/src/app/ngx-template.module.ts'])
 		.pipe(rename(newName + '.module.ts'))
