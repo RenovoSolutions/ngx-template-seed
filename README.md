@@ -4,6 +4,7 @@
 ## Getting started
 
 * clone the repo to your local machine
+* Run `npm install` in the root directory.
 * Run `npm run new [Insert Plugin Name Here]` _(only run this once when cloning the template repo)_
 * Enjoy.
 
@@ -27,6 +28,8 @@
 
 ### Contributors
 
-[<img alt="TheOriginalJosh" src="https://avatars.githubusercontent.com/u/1486275?v=3&s=117" width="117">](https://github.com/TheOriginalJosh) |
-:---: |
-[Josh Sommer](https://github.com/TheOriginalJosh) |
+[<img alt="TheOriginalJosh" src="https://avatars.githubusercontent.com/u/1486275?v=3&s=117" width="117">](https://github.com/TheOriginalJosh) | [<img alt="jbeck8176" src="https://avatars.githubusercontent.com/u/7142382?v=3&s=117" width="117">](https://github.com/jbeck8176) |
+:---: |:---: |
+[Josh Sommer](https://github.com/TheOriginalJosh) |[Jeff Beck](https://github.com/jbeck8176) |
+
+
