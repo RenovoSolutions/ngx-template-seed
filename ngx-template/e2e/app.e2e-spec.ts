@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { NgxTemplatePage } from './app.po';
 
 describe('ngx-template App', () => {
@@ -9,6 +10,6 @@ describe('ngx-template App', () => {
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    return page.getParagraphText().then(text => expect(text).to.equal('app works!'));
   });
 });
