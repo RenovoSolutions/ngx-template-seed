@@ -20,6 +20,14 @@
 
 * Run `npm run setup` to prepare the project. _(runs npm install in the demo and main project directory)_
 
+* *Optionally* you can use https://github.com/angular-buch/angular-cli-ghpages to publish the demo install to github pages. by first running `npm run demo` then going into your demo directory with `cd demo` and from their you can copy and past the two commands to publish to github pages. 
+    ```
+    ng build --prod --aot --base-href "https://USERNAME.github.io/YOUR-REPO-NAME/"
+    ```
+    then
+    ```
+    ngh --repo=https://github.com/USERNAME/YOUR-REPO-NAME.git
+    ```
 
 ### Requirements
 
